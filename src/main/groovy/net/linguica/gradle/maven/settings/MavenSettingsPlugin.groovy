@@ -173,6 +173,9 @@ class MavenSettingsPlugin implements Plugin<Project> {
             project.repositories.maven { MavenArtifactRepository repo ->
                 repo.name = mirror.name ?: mirror.id
                 repo.url = mirror.url
+                if (repo.url.scheme == 'http' && repo.hasProperty("allowInsecureProtocol")) {
+                    repo.allowInsecureProtocol = true
+                }
                 addCredentials(server, repo)
             }
         }
