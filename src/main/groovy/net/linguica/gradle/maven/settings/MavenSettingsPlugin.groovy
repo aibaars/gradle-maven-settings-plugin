@@ -136,7 +136,7 @@ class MavenSettingsPlugin implements Plugin<Project> {
             project.logger.info "Found central mirror in settings.xml. Replacing Maven Central repository with " +
                     "mirror located at ${centralMirror.url}"
             createMirrorRepository(project, centralMirror) { MavenArtifactRepository repo ->
-                ArtifactRepositoryContainer.MAVEN_CENTRAL_URL.startsWith(.toString())
+                ArtifactRepositoryContainer.MAVEN_CENTRAL_URL.startsWith(repo.url.toString())
             }
         }
     }
